@@ -1,6 +1,11 @@
 # BostonOptics(E-Commerce)
 A Sample N-layered .NET Core Project demonstrating Clean Architecture and the Generic Repository Pattern.
 
+## Packages Installed
+### ApplicationCore
+```
+Install-Package Ardalis.Specification -v 6.1.0
+```
 
 ## Useful Links
 ### Documantation
