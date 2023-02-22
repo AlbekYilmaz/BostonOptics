@@ -17,24 +17,32 @@ namespace Web.Services
             _brandRepo = brandRepo;
             _productRepo = productRepo;
         }
-        public async Task<HomeViewModel> GetHomeViewModelAsync(int? categoryId, int? brandId)
+        public async Task<HomeViewModel> GetHomeViewModelAsync(int? categoryId, int? brandId, int pageId)
         {
-            var specProducts=new ProductsFilterSpecification(categoryId, brandId);
+            var specAllProducts = new ProductsFilterSpecification(categoryId, brandId);
+            var countAll= await _productRepo.CountAsync(specAllProducts);
+            var specProducts=new ProductsFilterSpecification(categoryId, brandId, (pageId-1)*Constants.ITEMS_PER_PAGE, Constants.ITEMS_PER_PAGE);
             var products= await _productRepo.GetAllAsync(specProducts);
             var vm = new HomeViewModel()
             {
                 Products = products.Select(x => new ProductViewModel()
                 {
-                    Id=x.Id,
-                    Name=x.Name,
-                    Price=x.Price,
-                    PictureUrl=x.PictureUrl
+                    Id = x.Id,
+                    Name = x.Name,
+                    Price = x.Price,
+                    PictureUrl = x.PictureUrl
                 }).ToList(),
 
-                Categories =await GetCategoriesAsync(),
-                Brands =await GetBrandsAsync(),
+                Categories = await GetCategoriesAsync(),
+                Brands = await GetBrandsAsync(),
                 CategoryId = categoryId,
-                BrandId = brandId
+                BrandId = brandId,
+                PaginationInfo = new PaginationInfoViewModel()
+                {
+                    PageId = pageId,
+                    ItemsOnPage = products.Count(),
+                    TotalItems = countAll
+                }
             };
             return vm;
         }
