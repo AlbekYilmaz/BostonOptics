@@ -18,6 +18,8 @@ namespace Infrastructure.Data
         public DbSet<Category> Categories => Set<Category>();
         public DbSet<Brand> Brands => Set<Brand>();
         public DbSet<Product> Products => Set<Product>();
+        public DbSet<BasketItem> BasketItems => Set<BasketItem>();
+        public DbSet<Basket> Baskets => Set<Basket>();
 
 
         //Bu şekilde 100 tane kolona ekleme yapılamaz (Uzun yöntem)
