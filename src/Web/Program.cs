@@ -6,6 +6,7 @@ global using ApplicationCore.Interfaces;
 global using ApplicationCore.Entities;
 using Web.Interfaces;
 using Web.Services;
+using ApplicationCore.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppIdentityDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("AppIdentityDbContext")));
 builder.Services.AddDbContext<ShopContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("ShopContext")));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(EFRepository<>));
+builder.Services.AddScoped<IBasketService, BasketService>();
+builder.Services.AddScoped<IBasketViewModelService, BasketViewModelService>();
 builder.Services.AddScoped<IHomeViewModelService,HomeViewModelService>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -20,6 +23,7 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AppIdentityDbContext>();
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
