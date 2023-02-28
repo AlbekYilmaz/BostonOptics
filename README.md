@@ -35,8 +35,13 @@ Install-Package Microsoft.EntityFrameworkCore.Design -v 6.0.14
 ```
 
 ## Useful Links
+### Resources
+https://codepen.io/yigith/pen/PoOrWjX
+https://getbootstrap.com/docs/5.2/examples/checkout/
 ### Documantation
 https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/ 
+
+https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/write?view=aspnetcore-6.0
 ### Github:https:
 //github.com/dotnet-architecture/eShopOnWeb 
 ### E-book
