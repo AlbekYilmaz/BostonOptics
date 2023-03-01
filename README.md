@@ -18,6 +18,11 @@ Update-Database -context AppIdentityDbContext
 ```
 Install-Package Ardalis.Specification -v 6.1.0
 ```
+
+### UnitTests
+```
+Install-Package Moq
+```
 ### Infrastructure
 ```
 Install-Package Microsoft.EntityFrameworkCore -v 6.0.14
